@@ -1,0 +1,90 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Node.js Express Template API",
+    "description": "API documentation for the Node.js Express Template project"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Root endpoint",
+        "description": "Returns a welcome message",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "examples": {
+              "text/plain": "Welcome to the Node.js Express server from router.js!"
+            }
+          }
+        }
+      }
+    },
+    "/api/greeting": {
+      "get": {
+        "summary": "Greeting endpoint",
+        "description": "Returns a greeting message in JSON format",
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "examples": {
+              "application/json": {
+                "message": "Hello from the API!"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/data": {
+      "post": {
+        "summary": "Data submission endpoint",
+        "description": "Validates and accepts data with an email field",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "The email to validate",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "example": "test@example.com"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data received successfully",
+            "examples": {
+              "application/json": {
+                "message": "Data received successfully!"
+              }
+            }
+          },
+          "400": {
+            "description": "Validation error",
+            "examples": {
+              "application/json": {
+                "errors": [
+                  {
+                    "msg": "Invalid value",
+                    "param": "email",
+                    "location": "body"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
